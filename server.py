@@ -3,7 +3,7 @@ from _thread import start_new_thread
 import pickle
 
 # wake up server
-HOST = '94.73.237.132'
+HOST = '127.0.0.1'
 PORT = 60065
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((HOST, PORT))
