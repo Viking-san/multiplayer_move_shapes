@@ -40,7 +40,7 @@ class Network:
     # creat socket for client
     def __init__(self):
         self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.address = ('94.73.237.132', 5555)
+        self.address = ('94.73.237.132', 60065)
 
     # try connect to server, send urs info, and wait for info about other players(and bullets)
     def hello(self, my_color, start_pos):
