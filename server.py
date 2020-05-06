@@ -1,9 +1,8 @@
 import socket
-import pickle
 from _thread import start_new_thread
+import pickle
 
-
-# rise server
+# wake up server
 HOST = '127.0.0.1'
 PORT = 5555
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -11,7 +10,7 @@ server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server_socket.bind((HOST, PORT))
 server_socket.listen()
 print('listen')
-# dict of players and bullets
+# dicts of players and bullets
 players = {}
 cannons = {}
 ID = 0
