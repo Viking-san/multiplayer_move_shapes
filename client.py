@@ -34,7 +34,7 @@ def draw_window(players, win, side, cannons, collision, my_id):
         pg.draw.circle(win, cannons[cannon_].bull_c, (cannons[cannon_].bull_x, cannons[cannon_].bull_y), cannons[cannon_].bull_r)
 
 
-# random respawn,not in center of field
+# random respawn, not in center of field
 def start_pos(width, height, side):
     x = randrange(0, width - side)
     while x in range(width // 2 - 40 - side, width // 2 + 40):
@@ -80,11 +80,11 @@ while run:
         if event.type == pg.QUIT:
             run = False
 
-    # if u hittin cannon u max urs scores
+    # if u hittin cannon u get more scores
     if player.collision_with_circle((cannon.x, cannon.y), cannon.radius):
         player.score += 1
 
-    # collect info bout u and ur bullet, and sen to server, then catch it back # class: Network
+    # collect info bout u and ur bullet, and send it to server, then catch it back # class: Network
     data = [player.get_info(), cannon.get_cannon()]
     Players, Cannons = n.refresh(data)
 

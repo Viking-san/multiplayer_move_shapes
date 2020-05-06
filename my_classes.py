@@ -37,26 +37,26 @@ class Player:
 
 # talkin with server
 class Network:
-    # creat socket for client
+    # create socket for client
     def __init__(self):
         self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.address = ('127.0.0.1', 60065)
 
     # try connect to server, send urs info, and wait for info about other players(and bullets)
     def hello(self, my_color, start_pos):
-        # players, myID
+        # return players, myID
         self.client_socket.connect(self.address)
         data = pickle.dumps(['hello', my_color, start_pos])
         self.client_socket.send(data)
-        data = pickle.loads(self.client_socket.recv(1024 * 8))
+        data = pickle.loads(self.client_socket.recv(1024))
         return data[0], data[1]
 
     # send to server urs and yours bullet position, wait info about others
     def refresh(self, data):
-        # players
+        # return players, cannons
         data = pickle.dumps(data)
         self.client_socket.send(data)
-        return pickle.loads(self.client_socket.recv(1024 * 8))
+        return pickle.loads(self.client_socket.recv(1024))
 
     # close connection with server
     def bye_bye(self):

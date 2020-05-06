@@ -8,7 +8,6 @@ PORT = 60065
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((HOST, PORT))
 server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
 server_socket.listen()
 print('listen')
 # dicts of players and bullets
@@ -25,7 +24,7 @@ def threaded_clients(conn, id):
         # loop for talking with client
         while True:
             # try get data(list waiting)
-            data = pickle.loads(conn.recv(1024*8))
+            data = pickle.loads(conn.recv(1024))
             if not data:
                 break
 
@@ -43,7 +42,7 @@ def threaded_clients(conn, id):
             # sendin info back
             conn.send(pickle.dumps(data))
 
-    # if client close connection delete his and his bullet info
+    # if client close connection delete him and his bullet info
     except Exception as e:
         print(e)
         del players[id]
